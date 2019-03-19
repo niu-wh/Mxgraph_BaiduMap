@@ -1,0 +1,9 @@
+CREATE DATABASE demo;
+USE demo;
+CREATE TABLE ph_demo(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(30),
+	VALUE INT,
+	longtitude DOUBLE(10,6),
+	altitude DOUBLE(10,6)
+	);

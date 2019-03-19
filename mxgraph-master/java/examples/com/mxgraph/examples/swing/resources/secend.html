@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>授时_地图</title>
+	<style type="text/css">
+       body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+       #menu{height:100%;overflow-y:auto}
+       td{font-size:14px}
+       h4{margin:0;}
+       #map_demo1,#map_demo2{height: 50%}
+    </style>
+  
+    <script type="text/javascript" src="baidumap_offline_v2_load.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/baidu_map_v2.css"/>
+  
+</head>
+<body>
+<div id="map_demo"></div>
+
+</body>
+</html>
+
+<script type="text/javascript">  
+    // 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(114, 35);
+	map.centerAndZoom(point, 5);
+	map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+	//map.addControl(new BMap.MapTypeControl());
+    map.addControl(new BMap.NavigationControl());
+    map.enableKeyboard();                         // 启用键盘操作。  
+    //map.setCurrentCity("北京");                 // 设置地图显示的城市 此项是必须设置的
+
+	
+	//一级站
+    var xian = new BMap.Point(108.94704,34.347507); 
+    var beijing = new BMap.Point(116.416342,39.907645); 
+    var hefei = new BMap.Point(117.235166,31.827805); 
+	
+	var icon2 = new BMap.Icon("http://localhost:8080/baidumap2/images/circle10.png",new BMap.Size(30,30));
+
+    var xian_marker = new BMap.Marker(xian,{icon:icon2});
+    map.addOverlay(xian_marker); 
+    var beijing_marker = new BMap.Marker(beijing,{icon:icon2});
+    map.addOverlay(beijing_marker); 
+    var hefei_marker = new BMap.Marker(hefei,{icon:icon2});
+    map.addOverlay(hefei_marker); 
+	
+	
+    var opts = {
+	  width : 200,     // 信息窗口宽度
+	  height: 100,     // 信息窗口高度
+	  title : "info:" , // 信息窗口标题
+	  enableMessage:true,//设置允许信息窗发送短息
+	  message:"百度地图API V2.0 成功移植到离线版本。支持模块按需加载哦!"
+	}
+	var infoWindow = new BMap.InfoWindow("一级站：西安", opts);  // 创建信息窗口对
+	xian_marker.addEventListener("click", function(){          
+	map.openInfoWindow(infoWindow,xian); //开启信息窗口
+	});
+	
+	beijing_marker.addEventListener("click",attribute);
+	function attribute(){
+		var p = beijing_marker.getPosition();  //获取marker的位置
+		layer.msg("marker的位置是" + p.lng + "," + p.lat);    
+	}
+	
+	
+
+	//二级站
+    var wuhan = new BMap.Point(114.31561,30.596726); 
+    var shanghai = new BMap.Point(121.477665,31.235682); 
+    var changchun = new BMap.Point(125.330606,43.822579); 
+    var sanya = new BMap.Point(109.518847,18.25956); 
+    var kashi = new BMap.Point(76.000994,39.47788); 
+
+    //设置标注的图标
+    var icon = new BMap.Icon("http://localhost:8080/baidumap2/images/circle4.png",new BMap.Size(28,28));
+
+    var shanghai_marker = new BMap.Marker(shanghai,{icon:icon});
+    map.addOverlay(shanghai_marker);
+    var wuhan_marker = new BMap.Marker(wuhan,{icon:icon});
+    map.addOverlay(wuhan_marker);
+    var changchun_marker = new BMap.Marker(changchun,{icon:icon});
+    map.addOverlay(changchun_marker);
+    var sanya_marker = new BMap.Marker(sanya,{icon:icon});
+    map.addOverlay(sanya_marker);
+    var kashi_marker = new BMap.Marker(kashi,{icon:icon});
+    map.addOverlay(kashi_marker);
+
+
+    //三级站
+    var shenyang = new BMap.Point(123.437589,41.815608); 
+    var wulumuqi = new BMap.Point(87.629037,43.835757); 
+    var jiuquan = new BMap.Point(98.500681,39.743794); 
+    var kunming = new BMap.Point(102.838653,24.892879); 
+    var nanning = new BMap.Point(108.378053,22.820475); 
+    var xiamen = new BMap.Point(118.096435,24.487513); 
+    var wenzhou = new BMap.Point(120.711078,28.011292); 
+    var zhengzhou = new BMap.Point(113.636015,34.759134); 
+    var jinan = new BMap.Point(117.126399,36.650995); 
+    var hami = new BMap.Point(93.521212,42.837674); 
+    var haerbin = new BMap.Point(126.541611,45.807215); 
+    var lanzhou = new BMap.Point(103.845123,36.069102); 
+    var chongqing = new BMap.Point(106.553838,29.579048); 
+    var taiyuan = new BMap.Point(112.551797,37.878813); 
+    var chengdu = new BMap.Point(104.076931,30.57825); 
+    var zhanjiang = new BMap.Point(110.360955,21.283191); 
+    var nanjing = new BMap.Point(118.793223,32.062694); 
+    var baoji = new BMap.Point(107.239973,34.37845); 
+    var guangzhou = new BMap.Point(113.276028,23.137463); 
+
+    var icon1 = new BMap.Icon("http://localhost:8080/baidumap2/images/circle8.png",new BMap.Size(20,20));
+
+    var shenyang_marker = new BMap.Marker(shenyang,{icon:icon1});
+    map.addOverlay(shenyang_marker);
+    var wulumuqi_marker = new BMap.Marker(wulumuqi,{icon:icon1});
+    map.addOverlay(wulumuqi_marker);
+    var jiuquan_marker = new BMap.Marker(jiuquan,{icon:icon1});
+    map.addOverlay(jiuquan_marker);
+    var kunming_marker = new BMap.Marker(kunming,{icon:icon1});
+    map.addOverlay(kunming_marker);
+    var nanning_marker = new BMap.Marker(nanning,{icon:icon1});
+    map.addOverlay(nanning_marker);
+    var xiamen_marker = new BMap.Marker(xiamen,{icon:icon1});
+    map.addOverlay(xiamen_marker);
+    var wenzhou_marker = new BMap.Marker(wenzhou,{icon:icon1});
+    map.addOverlay(wenzhou_marker);
+    var zhengzhou_marker = new BMap.Marker(zhengzhou,{icon:icon1});
+    map.addOverlay(zhengzhou_marker);
+    var jinan_marker = new BMap.Marker(jinan,{icon:icon1});
+    map.addOverlay(jinan_marker);
+    var hami_marker = new BMap.Marker(hami,{icon:icon1});
+    map.addOverlay(hami_marker);
+    var haerbin_marker = new BMap.Marker(haerbin,{icon:icon1});
+    map.addOverlay(haerbin_marker);
+    var lanzhou_marker = new BMap.Marker(lanzhou,{icon:icon1});
+    map.addOverlay(lanzhou_marker);
+    var chongqing_marker = new BMap.Marker(chongqing,{icon:icon1});
+    map.addOverlay(chongqing_marker);
+    var taiyuan_marker = new BMap.Marker(taiyuan,{icon:icon1});
+    map.addOverlay(taiyuan_marker);
+    var chengdu_marker = new BMap.Marker(chengdu,{icon:icon1});
+    map.addOverlay(chengdu_marker);
+    var zhanjiang_marker = new BMap.Marker(zhanjiang,{icon:icon1});
+    map.addOverlay(zhanjiang_marker);
+    var nanjing_marker = new BMap.Marker(nanjing,{icon:icon1});
+    map.addOverlay(nanjing_marker);
+    var baoji_marker = new BMap.Marker(baoji,{icon:icon1});
+    map.addOverlay(baoji_marker);
+    var guangzhou_marker = new BMap.Marker(guangzhou,{icon:icon1});
+    map.addOverlay(guangzhou_marker);
+
+
+	
+
+    var polyline1 = new BMap.Polyline([
+		xian,zhengzhou,wuhan,chongqing,chengdu
+	], {strokeColor:"green", strokeWeight:4, strokeOpacity:1});
+    map.addOverlay(polyline1);
+    var polyline2 = new BMap.Polyline([
+		wuhan,hefei,nanjing
+	], {strokeColor:"green", strokeWeight:4, strokeOpacity:1});
+    map.addOverlay(polyline2);
+    var polyline3 = new BMap.Polyline([
+		zhanjiang,sanya
+	], {strokeColor:"green", strokeWeight:4, strokeOpacity:1});
+    map.addOverlay(polyline3);
+    var polyline4 = new BMap.Polyline([
+		beijing,shenyang,changchun,haerbin
+	], {strokeColor:"green", strokeWeight:4, strokeOpacity:1});
+    map.addOverlay(polyline4);
+    var polyline5 = new BMap.Polyline([
+		xian,baoji,lanzhou,jiuquan,hami,wulumuqi,kashi
+	], {strokeColor:"green", strokeWeight:4, strokeOpacity:1});
+    map.addOverlay(polyline5);
+    var polyline6 = new BMap.Polyline([
+		xian,chengdu,kunming,nanning,zhanjiang,guangzhou,xiamen,wenzhou,shanghai,nanjing,jinan,beijing,taiyuan,xian
+	], {strokeColor:"green", strokeWeight:4, strokeOpacity:1});
+    map.addOverlay(polyline6);
+
+    var polyline_red1 = new BMap.Polyline([
+		xian,chengdu,kunming,nanning,zhanjiang,guangzhou,xiamen,wenzhou,shanghai,nanjing,jinan,beijing,taiyuan,xian
+	], {strokeColor:"green", strokeWeight:2, strokeOpacity:1});
+    map.addOverlay(polyline_red1);
+    var polyline_red2 = new BMap.Polyline([
+		xian,zhengzhou,wuhan,chongqing,chengdu
+	], {strokeColor:"green", strokeWeight:2, strokeOpacity:1});
+    map.addOverlay(polyline_red2);
+    var polyline_red3 = new BMap.Polyline([
+		wuhan,hefei,nanjing
+	], {strokeColor:"green", strokeWeight:2, strokeOpacity:1});
+    map.addOverlay(polyline_red3);
+	
+	
+	var polyline_red4 = new BMap.Polyline([
+		xian,taiyuan,beijing
+	], {strokeColor:"red", strokeWeight:4, strokeOpacity:1});
+    map.addOverlay(polyline_red4);
+
+</script>
